@@ -53,7 +53,16 @@ class Global_model extends CI_Model
             $this->db->order_by(key($order), $order[key($order)]);
         }
     }
+	
+	public function get_employee($id)
+    {
+        $employee = $this->db->get_where('employee', array(
+            'id' => $id
+        ))->row();
 
+        return $employee;
+    }
+	
     function get_inbox_datatables(){
         $term = $_REQUEST['search']['value'];
         $this->_get_inbox_query($term);

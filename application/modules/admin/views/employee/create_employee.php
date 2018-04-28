@@ -77,28 +77,30 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label><?= lang('country') ?><span class="required" aria-required="true">*</span></label>
+										<input type="hidden" name="country" value="Indonesia" />
+                                        <!--<label><?//= lang('country') ?><span class="required" aria-required="true">*</span></label>
                                         <select class="form-control select2" name="country" >
-                                            <option value=""><?= lang('please_select') ?>..</option>
-                                            <?php foreach($countries as $item){ ?>
-                                                <option value="<?php echo $item->country ?>"><?php echo $item->country ?></option>
-                                            <?php } ?>
+                                            <option value=""><?//= lang('please_select') ?>..</option>
+                                            <?php //foreach($countries as $item){ ?>
+                                                <option value="<?php //echo $item->country ?>"><?php //echo $item->country ?></option>
+                                            <?php //} ?>
 
-                                        </select>
+                                        </select>-->
                                     </div>
                                 </div>
 
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 hide">
                                     <div class="form-group">
-                                        <label><?= lang('blood_group') ?></label>
+										<input type="hidden" name="blood_group" />
+                                       <!-- <label><?//= lang('blood_group') ?></label>
                                         <select class="form-control select2" name="blood_group">
-                                            <option value=""><?= lang('please_select') ?>..</option>
+                                            <option value=""><?//= lang('please_select') ?>..</option>
                                             <option value="A">A</option>
                                             <option value="B">B</option>
                                             <option value="AB">AB</option>
                                             <option value="O">O</option>
-                                        </select>
+                                        </select> -->
                                     </div>
                                 </div>
 
@@ -110,14 +112,15 @@
                             </div>
 
                             <div class="form-group">
-                                <label><?= lang('religious') ?> </label>
+                                <input type="hidden" name="religious" value="Muslims" />
+								<!--<label><?//= lang('religious') ?> </label>
                                 <select class="form-control select2" name="religious">
                                     <option value="Christians">Christians</option>
                                     <option value="Muslims">Muslims</option>
                                     <option value="Hindus">Hindus</option>
                                     <option value="Buddhists">Buddhists</option>
                                     <option value="Jews">Jews</option>
-                                </select>
+                                </select>-->
 
                             </div>
 

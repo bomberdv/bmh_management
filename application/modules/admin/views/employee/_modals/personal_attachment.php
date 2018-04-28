@@ -7,7 +7,23 @@
 <div class="modal-body">
 
     <?php echo form_open_multipart('admin/employee/save_personal_attachment', $attribute= array('id' => 'personalAttach'))?>
+		
+		<div class="form-group">
+            <label for="exampleInputEmail1"><?= lang('id_doc') ?> <span
+                    class="required">*</span></label>
+            <input type="text" name="id_doc" class="form-control">
+        </div>
+		
+		<div class="form-group">
+			<label><?= lang('type_doc') ?> <span
+                    class="required">*</span></label>
+			<select class="form-control" name="type_doc">
+				<option value="Ijasah">Ijasah</option>
+				<option value="Sertikat">Sertifikat</option>
+				<option value="Sk">Sk</option>
+			</select>
 
+		</div>
 
         <div class="form-group">
             <label for="exampleInputEmail1"><?= lang('attachment') ?><span

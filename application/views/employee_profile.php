@@ -9,7 +9,8 @@
                 <h3 class="box-title"><?= lang('employee_profile') ?></h3>
             </div>
             <div class="box-body">
-
+				
+				<!--<a class="btn bg-navy btn-flat btn-md" href="<?php //echo site_url('employee/profile/employeeDetails/'. str_replace(array('+', '/', '='), array('-', '_', '~'), $this->encrypt->encode($employee->id)) ) ?>" ><i class="fa fa-pencil-square-o"></i> Edit Profile </a>-->
                 <table class="table table-bordered">
                     <tr>
                         <th style="width:120px"><?= lang('employee_id') ?>: </th>

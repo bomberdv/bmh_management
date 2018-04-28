@@ -20,24 +20,71 @@
         <div class="row">
             <div class="col-md-6">
 
-                <div class="form-group">
-                        <label><?= lang('address_street_1') ?><span class="required">*</span></label>
-                        <input type="text" name="address_1" class="form-control" value="<?php if(!empty($contact_details->address_1)){echo $contact_details->address_1; }?>" >
+               
+				<input type="hidden" name="country" value="Indonesia" />
+				<div class="form-group">
+                    <label><?= lang('province') ?> <span class="required">*</span></label>
+                    <select class="form-control select2" id="province" name="province" onchange="ajaxkota(this.value)" >
+                        <option value=""><?= lang('please_select') ?>...</option>
+                        <?php foreach($provinces as $province){ ?>
+                            <option value="<?php echo $province->id_prov ?>" <?php if(!empty($contact_details->province)) echo $contact_details->province == $province->id_prov ?'selected':''  ?>><?php echo $province->nama ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
-
 
                 <div class="form-group">
                     <label><?= lang('city') ?> <span class="required">*</span></label>
-                    <input type="text" name="city" class="form-control" value="<?php if(!empty($contact_details->city)){echo $contact_details->city; }?>" >
+                    <select class="form-control select2" id="city" name="city" onchange="ajaxkec(this.value)" >
+                        <option value=""><?= lang('please_select') ?>...</option>
+                        <?php foreach($countries as $city){ ?>
+                            <option value="<?php echo $city->id_kab ?>" <?php if(!empty($contact_details->city)) echo $contact_details->city == $city->id_kab ?'selected':''  ?>><?php echo $city->nama ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
 
+				<div class="form-group">
+                    <label><?= lang('districts') ?> <span class="required">*</span></label>
+                    <select class="form-control select2" id="districts" name="districts" onchange="ajaxkel(this.value)" >
+                        <option value=""><?= lang('please_select') ?>...</option>
+                        <?php foreach($districts as $district){ ?>
+                            <option value="<?php echo $district->id_kec ?>" <?php if(!empty($contact_details->districts)) echo $contact_details->districts == $district->id_kec ?'selected':''  ?>><?php echo $district->nama ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+				
+				<div class="form-group">
+                    <label><?= lang('village') ?></label>
+                    <select class="form-control select2" id="village" name="village" >
+                        <option value=""><?= lang('please_select') ?>...</option>
+                        
+                    </select>
+                </div>
+				
                 <div class="form-group">
                     <label><?= lang('zip_postal_code') ?><span class="required">*</span></label>
                     <input type="text" name="postal" class="form-control" value="<?php if(!empty($contact_details->postal)){echo $contact_details->postal; }?>" >
                 </div>
 
-                <hr/>
-                <div class="form-group">
+				
+				 <div class="form-group">
+                        <label><?= lang('address_street_1') ?><span class="required">*</span></label>
+                        <input type="text" name="address_1" class="form-control" value="<?php if(!empty($contact_details->address_1)){echo $contact_details->address_1; }?>" >
+                </div>
+				
+				 <div class="form-group">
+                    <label><?= lang('address_street_2') ?></label>
+                    <input type="text" name="address_2" class="form-control" value="<?php if(!empty($contact_details->address_2)){echo $contact_details->address_2; }?>" >
+                </div>
+				
+                <span class="required">*</span><?= lang('required_field') ?>
+
+            </div>
+
+
+
+            <div class="col-md-6">
+
+               <div class="form-group">
                     <label><?= lang('home_telephone') ?> <span class="required">*</span></label>
                     <input type="text" name="home_telephone" class="form-control" value="<?php if(!empty($contact_details->home_telephone)){echo $contact_details->home_telephone; }?>" >
                 </div>
@@ -52,35 +99,21 @@
                     <input type="text" name="mobile" class="form-control" value="<?php if(!empty($contact_details->mobile)){echo $contact_details->mobile; }?>" >
                 </div>
 
-                <span class="required">*</span><?= lang('required_field') ?>
-
-            </div>
-
-
-
-            <div class="col-md-6">
-
-                <div class="form-group">
-                    <label><?= lang('address_street_2') ?></label>
-                    <input type="text" name="address_2" class="form-control" value="<?php if(!empty($contact_details->address_2)){echo $contact_details->address_2; }?>" >
+                <div class="form-group hide">
+                    <!--<label><?//= lang('state_province') ?><span class="required">*</span></label>
+                    <input type="text" name="state" class="form-control" value="<?php //if(!empty($contact_details->state)){echo $contact_details->state; }?>" > -->
                 </div>
 
-                <div class="form-group">
-                    <label><?= lang('state_province') ?><span class="required">*</span></label>
-                    <input type="text" name="state" class="form-control" value="<?php if(!empty($contact_details->state)){echo $contact_details->state; }?>" >
-                </div>
-
-                <div class="form-group">
-                    <label><?= lang('country') ?><span class="required">*</span></label>
+                <div class="form-group hide">
+                    <!--<label><?//= lang('country') ?><span class="required">*</span></label>
                     <select class="form-control" name="country" >
-                        <option value=""><?= lang('please_select') ?>...</option>
-                        <?php foreach($countries as $country){ ?>
-                            <option value="<?php echo $country->country ?>" <?php if(!empty($contact_details->country)) echo $contact_details->country == $country->country ?'selected':''  ?>><?php echo $country->country ?></option>
-                        <?php } ?>
-                    </select>
+                        <option value=""><?//= lang('please_select') ?>...</option>
+                        <?php //foreach($countries as $country){ ?>
+                            <option value="<?php //echo $country->country ?>" <?php //if(!empty($contact_details->country)) echo $contact_details->country == $country->country ?'selected':''  ?>><?php //echo $country->country ?></option>
+                        <?php //} ?>
+                    </select>-->
                 </div>
 
-                <hr/>
                 <div class="form-group">
                     <label><?= lang('work_email') ?></label>
                     <input type="text" name="work_email" class="form-control" value="<?php if(!empty($contact_details->work_email)){echo $contact_details->work_email; }?>" >
@@ -142,6 +175,74 @@
             $('#editContact').show();
         });
     });
+	
+	var ajaxku = buatajax();
+	function ajaxkota(id){
+	  var url="employee/select_daerah?prop="+id+"&sid="+Math.random();
+	  ajaxku.onreadystatechange=stateChanged;
+	  ajaxku.open("GET",url,true);
+	  ajaxku.send(null);
+	}
+
+	function ajaxkec(id){
+	  var url="employee/select_daerah?kab="+id+"&sid="+Math.random();
+	  ajaxku.onreadystatechange=stateChangedKec;
+	  ajaxku.open("GET",url,true);
+	  ajaxku.send(null);
+	}
+
+	function ajaxkel(id){
+	  var url="employee/select_daerah?kec="+id+"&sid="+Math.random();
+	  ajaxku.onreadystatechange=stateChangedKel;
+	  ajaxku.open("GET",url,true);
+	  ajaxku.send(null);
+	}
+
+	function buatajax(){
+	  if (window.XMLHttpRequest){
+		return new XMLHttpRequest();
+	  }
+	  if (window.ActiveXObject){
+		return new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+	  return null;
+	}
+	function stateChanged(){
+	  var data;
+	  if (ajaxku.readyState==4){
+		data=ajaxku.responseText;
+		if(data.length>=0){
+		  document.getElementById("city").innerHTML = data
+		}else{
+		  document.getElementById("city").value = "<option selected><?=lang('please_select')?></option>";
+		}
+	  }
+	}
+
+	function stateChangedKec(){
+	  var data;
+	  if (ajaxku.readyState==4){
+		data=ajaxku.responseText;
+		if(data.length>=0){
+		  document.getElementById("districts").innerHTML = data
+		}else{
+		  document.getElementById("districts").value = "<option selected><?=lang('please_select')?></option>";
+		}
+	  }
+	}
+
+	function stateChangedKel(){
+	  var data;
+	  if (ajaxku.readyState==4){
+		data=ajaxku.responseText;
+		if(data.length>=0){
+		  document.getElementById("village").innerHTML = data
+		}else{
+		  document.getElementById("village").value = "<option selected><?=lang('please_select')?></option>";
+		}
+	  }
+	}
+	
 </script>
 
 

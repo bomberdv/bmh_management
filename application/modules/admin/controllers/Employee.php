@@ -9,6 +9,7 @@ class Employee extends Admin_Controller
         parent::__construct();
         $this->load->library('form_builder');
         $this->mTitle = TITLE;
+        $this->load->model('common');
         $this->load->model('global_model');
         $this->load->model('attendance_model');
 
@@ -120,7 +121,11 @@ class Employee extends Admin_Controller
         //select employee from database
         $data['employee'] = $this->global_model->get_employee($id);
         //country
-        $data['countries'] = $this->db->get('countries')->result();
+        $data['provinces'] 	= $this->db->get('provinsi')->result();
+		$data['countries'] 	= $this->db->get('kabupaten')->result();
+		$data['districts'] 	= $this->db->get('kecamatan')->result();
+		$data['villages'] 	= $this->db->get('kelurahan')->result();
+        
 
         $data['employee'] == TRUE || $this->message->norecord_found('admin/employee/employeeList');
 
@@ -303,11 +308,14 @@ class Employee extends Admin_Controller
         $id = $this->input->post('id');
         $employee = $this->global_model->get_employee($id);
 
+        $this->form_validation->set_rules('id_doc', lang('id_doc'), 'trim|required|xss_clean');
         $this->form_validation->set_rules('description', lang('description'), 'trim|required|xss_clean');
 
         if ($this->form_validation->run()== TRUE) {
 
             $file_name = upload_employee_file($employee->employee_id, '*', $id);
+            $id_doc = $this->input->post('id_doc');
+            $type_doc = $this->input->post('type_doc');
             $description = $this->input->post('description');
             if(!empty($employee->personal_attachment))
             {
@@ -315,6 +323,8 @@ class Employee extends Admin_Controller
             }
             $loggedUser = $this->ion_auth->user()->row();
             $personal_attachment[]= array(
+                                                    'doc_id'         => $id_doc,
+                                                    'type_doc'         => $type_doc,
                                                     'file'          => $file_name,
                                                     'description'   => $description,
                                                     'date'          => date("Y/m/d"),
@@ -394,8 +404,9 @@ class Employee extends Admin_Controller
         $employee = $this->global_model->get_employee($id);
 
         $this->form_validation->set_rules('address_1', lang('address_street_1'), 'trim|required|xss_clean');
+        $this->form_validation->set_rules('province', lang('province'), 'trim|required|xss_clean');
         $this->form_validation->set_rules('city', lang('city'), 'trim|required|xss_clean');
-        $this->form_validation->set_rules('state', lang('state_province'), 'trim|required|xss_clean');
+        $this->form_validation->set_rules('districts', lang('districts'), 'trim|required|xss_clean');
         $this->form_validation->set_rules('postal', lang('zip_postal_code'), 'trim|required|xss_clean');
         $this->form_validation->set_rules('country', lang('country'), 'trim|required|xss_clean');
         $this->form_validation->set_rules('home_telephone', lang('home_telephone'), 'trim|required|xss_clean');
@@ -405,7 +416,10 @@ class Employee extends Admin_Controller
             $contact_details = array(
                 'address_1'         => $this->input->post('address_1'),
                 'address_2'         => $this->input->post('address_2'),
+                'province'          => $this->input->post('province'),
                 'city'              => $this->input->post('city'),
+                'districts'         => $this->input->post('districts'),
+                'village'         	=> $this->input->post('village'),
                 'state'             => $this->input->post('state'),
                 'postal'            => $this->input->post('postal'),
                 'country'           => $this->input->post('country'),
@@ -2211,7 +2225,40 @@ class Employee extends Admin_Controller
         $this->message->delete_success('admin/employee/reimbursemen');
     }
 
-
+	function select_daerah(){
+		if (!empty($_GET['prop'])){
+		  if (ctype_digit($_GET['prop'])) {
+			$query = $this->common->getDataTimeFrame('*', 'kabupaten', 'id_prov="'.$_GET['prop'].'"');
+			
+			echo"<option value=''>".lang('please_select')."</option>";
+			foreach($query as $val){
+			  echo "<option value='".$val->id_kab."'>".$val->nama."</option>";
+			}
+		  }
+		}
+		if (!empty($_GET['kab'])){
+		  if (ctype_digit($_GET['kab'])) {
+			$query = $this->common->getDataTimeFrame('*', 'kecamatan', 'id_kab="'.$_GET['kab'].'"');
+			
+			echo"<option value=''>".lang('please_select')."</option>";
+			foreach($query as $val){
+			  echo "<option value='".$val->id_kec."'>".$val->nama."</option>";
+			}
+			
+		  }
+		}
+		if (!empty($_GET['kec'])){
+		  if (ctype_digit($_GET['kec'])) {
+			$query = $this->common->getDataTimeFrame('*', 'kelurahan', 'id_kec="'.$_GET['kec'].'"');
+			
+			echo"<option value=''>".lang('please_select')."</option>";
+			foreach($query as $val){
+			  echo "<option value='".$val->id_kel."'>".$val->nama."</option>";
+			}
+			
+		  }
+		}
+	}
 
 
 }

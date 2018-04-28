@@ -70,28 +70,30 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label><?= lang('country') ?><span class="required" aria-required="true">*</span></label>
+							<input type="hidden" name="country" value="<?=$employee->country?>" />
+                            <!--<label><?//= lang('country') ?><span class="required" aria-required="true">*</span></label>
                             <select class="form-control" name="country">
-                                <option value=""><?= lang('please_select') ?>..</option>
-                                <?php foreach($countries as $item){ ?>
-                                    <option value="<?php echo $item->country ?>" <?php if(!empty($employee->country)) echo $employee->country == $item->country ?'selected':''  ?>><?php echo $item->country ?></option>
-                                <?php } ?>
+                                <option value=""><?//= lang('please_select') ?>..</option>
+                                <?php //foreach($countries as $item){ ?>
+                                    <option value="<?php //echo $item->country ?>" <?php //if(!empty($employee->country)) echo $employee->country == $item->country ?'selected':''  ?>><?php //echo $item->country ?></option>
+                                <?php //} ?>
 
-                            </select>
+                            </select>-->
                         </div>
                     </div>
 
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label><?= lang('blood_group') ?></label>
+                            <input type="hidden" name="blood_group" value="<?=$employee->blood_group?>" />
+							<!--<label><?//= lang('blood_group') ?></label>
                             <select class="form-control" name="blood_group">
-                                <option value=""><?= lang('please_select') ?>..</option>
-                                <option value="A" <?php if(!empty($employee->blood_group)) echo $employee->blood_group == 'A'?'selected':''  ?>>A</option>
-                                <option value="B" <?php if(!empty($employee->blood_group)) echo $employee->blood_group == 'B'?'selected':''  ?>>B</option>
-                                <option value="AB" <?php if(!empty($employee->blood_group)) echo $employee->blood_group == 'AB'?'selected':''  ?>>AB</option>
-                                <option value="O" <?php if(!empty($employee->blood_group)) echo $employee->blood_group == 'O'?'selected':''  ?>>O</option>
-                            </select>
+                                <option value=""><?//= lang('please_select') ?>..</option>
+                                <option value="A" <?php //if(!empty($employee->blood_group)) echo $employee->blood_group == 'A'?'selected':''  ?>>A</option>
+                                <option value="B" <?php //if(!empty($employee->blood_group)) echo $employee->blood_group == 'B'?'selected':''  ?>>B</option>
+                                <option value="AB" <?php //if(!empty($employee->blood_group)) echo $employee->blood_group == 'AB'?'selected':''  ?>>AB</option>
+                                <option value="O" <?php //if(!empty($employee->blood_group)) echo $employee->blood_group == 'O'?'selected':''  ?>>O</option>
+                            </select>-->
                         </div>
                     </div>
 
@@ -237,6 +239,8 @@
                                             <input type="checkbox" id="parent_present"><span></span>
                                         </label>
                                     </th>
+                                    <th class="active"><?= lang('id_doc') ?></th>
+                                    <th class="active"><?= lang('type_doc') ?></th>
                                     <th class="active"><?= lang('file_name') ?></th>
                                     <th class="active"><?= lang('description') ?></th>
                                     <th class="active"><?= lang('date_added') ?></th>
@@ -254,6 +258,8 @@
                                                 <input name="personalAttach[]" value="<?php echo $key ?>" type="checkbox" class="child_present"><span></span>
                                             </label>
                                         </td>
+										<td><?php echo $item->doc_id ?></td>
+										<td><?php echo $item->type_doc ?></td>
                                         <td><a href="<?php echo site_url('admin/employee/download_personalAttachment/'.$employee->id.'_'.$key)?>"><?php echo $item->file ?></a></td>
                                         <td><?php echo $item->description ?></td>
                                         <td><?php echo date(get_option('date_format'), strtotime($item->date)) ?></td>
