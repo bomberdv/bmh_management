@@ -133,7 +133,7 @@ body {
 /* background-color: #605ca8;
 background-image: linear-gradient(to right, #605ca8 0%, #2574ab 100%);
 background-repeat: repeat-x; */
-background-image: url('../img/eofficebg-low.jpg');
+background-image: url('../img/');
 background-size: cover;
 background-position: center center;
 
@@ -196,7 +196,7 @@ background-repeat: repeat-x;
 .site-wrapper {
     position: relative;
     overflow: hidden;
-    background: rgba(28, 12, 125, 0.57) none repeat scroll 0 0;
+    background: #eaeaea none repeat scroll 0 0;
     background-size: cover;
 }
 .site-wrapper::before {
@@ -206,10 +206,10 @@ background-repeat: repeat-x;
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(11, 1, 35, 0.79) none repeat scroll 0 0;
+    background: #eaeaea none repeat scroll 0 0;
     opacity: 0.9;
     z-index: 0;
-    border-bottom: 40px solid #2AB573;
+  
 }
 .site-wrapper-inner {
     z-index: 10;
@@ -240,7 +240,7 @@ background-repeat: repeat-x;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-background-color: rgba(77, 73, 170, 0.49);
+background-color: rgba(140, 198, 63, 0.49);
 background-image: linear-gradient(to right, rgba(83, 79, 166, 0.35) 0%, rgba(23, 102, 159, 0.59) 100%);
 background-repeat: repeat-x;
   border-radius: 6px;
