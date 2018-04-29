@@ -32,7 +32,7 @@
         }
         .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
             color: #fff;
-            background-color: #d14d42;
+            background-color: #f28d1e;
             border: none !important;
             border-bottom-color: transparent;
             border-radius:none !important;
@@ -43,7 +43,8 @@
             border: none !important;
             border-radius:none !important;
             text-transform:uppercase;
-            font-size:16px;
+            text-align: center;
+            font-size:20px;
             background: rgba(255, 255, 255, .1);
         }
 
@@ -136,32 +137,11 @@
 
             <!-- start inner cover -->
             <div class="inner cover clearfix">
-                <div class="col-xs-12 col-sm-6 intro-cont">
-                    <?php $logo = get_option('login_logo')?>
-                    <?php $title = get_option('login_title')?>
-                    <?php $description = get_option('login_description')?>
-                    <span>
-                    <?php if(empty($logo)){ ?>
-                        <img class="img-responsive" src="<?php echo base_url('assets/img/eoffice_logo_w.png') ?>">
-                    <?php }else{ ?>
-                        <img class="img-responsive" src="<?php echo site_url(UPLOAD_LOGO.$logo)?>" width="250" height="200">
-                    <?php } ?>
+                <div class="col-xs-3 col-sm-2 ">
                 </span>
-                    <?php if(empty($title)){ ?>
-                        <h1 class="page-intro">Ultimate HRM & Accounts Features </h1>
-                    <?php }else{ ?>
-                        <h1 class="page-intro"><?= $title ?> </h1>
-                    <?php } ?>
-
-                    <?php if(empty($description)){ ?>
-                        <p>eOffice is an office management software where you can easily manage your Employee, Accounts, Business Transaction, Manage product, customer, Vendor, Sales and Purchase etc.</p>
-                    <?php }else{ ?>
-                        <p><?= $description ?></p>
-                    <?php } ?>
-
-
+                    
                 </div>
-                <div class="col-xs-12 col-sm-5 col-sm-offset-1 sign-in-outer">
+                <div class="col-xs-12 col-sm-6 col-sm-offset-1 sign-in-outer">
                     <div class="sign-in-wrap">
                         <h2 class="form-heading"><?= lang('sign_in') ?></h2>
                         <div class="form-body">
@@ -172,7 +152,7 @@
 
                             <ul class="nav nav-tabs final-login">
                                 <li><a data-toggle="tab" href="#adminLogin">Admin Login</a></li>
-                                <li class="active" style="color: white"><a data-toggle="tab" href="#employeeLogin">Employee Login</a></li>
+                                <li class="active" style="color: white"><a data-toggle="tab" href="#employeeLogin">AMIL</a></li>
                             </ul>
 
                             <div class="tab-content">
